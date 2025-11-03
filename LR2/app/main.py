@@ -1,16 +1,24 @@
 from typing import Generator, Any
+import os
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, Session
 from litestar import Litestar
 from litestar.di import Provide
+from dotenv import load_dotenv
 
 from models import Base
 from app.repositories.user_repository import UserRepository
 from app.services.user_service import UserService
 from app.controllers.user_controller import UserController
 
+# Загружаем переменные окружения
+load_dotenv()
+
 # === Настройка SQLAlchemy ===
-DATABASE_URL = "postgresql+psycopg2://postgres:pass@localhost:5432/labdb"
+DATABASE_URL = os.getenv(
+    "DATABASE_URL",
+    "postgresql+psycopg2://postgres:pass@localhost:5432/labdb"
+)
 engine = create_engine(DATABASE_URL, echo=True)
 SessionLocal = sessionmaker(bind=engine)
 
