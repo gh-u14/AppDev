@@ -1,0 +1,30 @@
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+addopts = "--verbose --color=yes"
+
+[tool.isort]
+profile = "black"
+known_first_party = ["app"]
+skip = []
+
+[tool.black]
+line-length = 88
+target-version = ['py311']
+exclude = '''
+/(
+  \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | docker
+  | config
+  | temp
+  | migrations
+)/
+'''
+
