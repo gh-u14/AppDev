@@ -1,0 +1,25 @@
+fail_fast: false
+
+repos:
+  - repo: local
+    hooks:
+      - id: system
+        name: Black
+        entry: black LR5/app
+        pass_filenames: false
+        language: system
+  - repo: local
+    hooks:
+      - id: isort
+        name: isort
+        entry: isort LR5/app
+        pass_filenames: false
+        language: system
+  - repo: local
+    hooks:
+      - id: system
+        name: pylint
+        entry: bash -c 'cd LR5 && pylint app'
+        pass_filenames: false
+        language: system
+
